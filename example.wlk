@@ -12,9 +12,11 @@ class Duende inherits Criatura(poderMagico = 0,astucia = 0) {
 
     const property tieneCuernos = true
 
+    method esAstuto() = false
+
 }
 
-class Hada inherits Criatura(poderMagico = 0,astucia = 0) {
+class Hada inherits Criatura(poderMagico = 0.10,astucia = 0) {
 
     const property tieneCuernos = false
 
@@ -26,9 +28,7 @@ class Hada inherits Criatura(poderMagico = 0,astucia = 0) {
         }
     }
 
-
-
-    method poderOfensivo() = self.poderMagico() * 10
+    method esAstuto() = self.astucia() > 50
 
 }
 
@@ -44,16 +44,19 @@ class rol {
 
     method poderOfensivo() = self.criatura().poderMagico() * 10
 
-
 }
 
 class Guardian inherits rol(criatura = new Hada()){
     override method poderOfensivo() = super() + 100
 
+    method esExtraordinario() = criatura.poderMagico() > 50
+
 }
 
 class Hechicero inherits rol(criatura = new Duende()){
     override method poderOfensivo() = super()
+
+    method esExtraordinario() = true
 }
 
 class Domador inherits rol(criatura = new Hada()){
@@ -69,6 +72,8 @@ class Domador inherits rol(criatura = new Hada()){
             super() + 
             (150 * mascotas.filter({unaMascota => not unaMascota.tieneCuernos() }).size())
     }
+
+    method esExtraordinario() = criatura.poderMagico() >= 15
 
     
 }
