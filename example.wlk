@@ -47,12 +47,16 @@ class rol {
 
 }
 
-class Guardian inherits rol(criatura = Duende){
+class Guardian inherits rol(criatura = new Hada()){
     override method poderOfensivo() = super() + 100
 
 }
 
-class Domador inherits rol(criatura = Hada){
+class Hechicero inherits rol(criatura = new Duende()){
+    override method poderOfensivo() = super()
+}
+
+class Domador inherits rol(criatura = new Hada()){
 
     var property mascotas = []
 
@@ -69,6 +73,11 @@ class Domador inherits rol(criatura = Hada){
     
 }
 
-class Hechicero inherits rol(criatura = Duende){
-    //override method poderOfensivo() = super()
-}
+/*
+const domador_1 = new Domador()
+ 
+const hechicero_1 = new Hechicero()
+ 
+const guardian_1 = new Guardian()
+*/
+
